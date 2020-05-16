@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Table(name = "employees")
 public class Employee extends User {
 	private String name;
-	private EmployeeType employeetype;
+	private EmployeeType employeeType;
 
 	private List<Shipment> shipments;
 
@@ -34,7 +34,7 @@ public class Employee extends User {
 		this.name = name;
 	}
 
-	@OneToMany(mappedBy = "shipment", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
 	public List<Shipment> getShipments() {
 		return shipments;
 	}
@@ -54,13 +54,13 @@ public class Employee extends User {
 	}
 	
 	@Enumerated(EnumType.STRING)
-	@Column(name = "question_text", nullable = false, unique = false, updatable = true)
-	public EmployeeType getEmployeetype() {
-		return employeetype;
+	@Column(name = "employee_type", nullable = false, unique = false, updatable = true)
+	public EmployeeType getEmployeeType() {
+		return employeeType;
 	}
 
-	public void setEmployeetype(EmployeeType employeetype) {
-		this.employeetype = employeetype;
+	public void setEmployeeType(EmployeeType employeeType) {
+		this.employeeType = employeeType;
 	}
 
 }

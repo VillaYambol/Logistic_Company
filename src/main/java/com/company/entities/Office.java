@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Office extends BaseEntity {
 	private String address;
 	private Company company;
+	private  double shippingPrice;
 	private Set<Employee> employees; 
 
 	public Office() {
@@ -44,7 +45,7 @@ public class Office extends BaseEntity {
 		this.company = company;
 	}
 	
-	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
 	@JsonIgnore
 	public Set<Employee> getEmployees() {
 		return employees;
@@ -52,6 +53,15 @@ public class Office extends BaseEntity {
 
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
+	}
+
+	@Column(name = "price", nullable = false, unique = false, updatable = false)
+	public double getShippingPrice() {
+		return shippingPrice;
+	}
+
+	public void setShippingPrice(double shippingPrice) {
+		this.shippingPrice = shippingPrice;
 	}
 
 	@Override

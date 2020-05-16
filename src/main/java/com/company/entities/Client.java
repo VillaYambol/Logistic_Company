@@ -2,21 +2,21 @@ package com.company.entities;
 
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "clients")
 public class Client extends User {
-	
+
+
 	private List<Shipment> sentShipments;
-	private List<Shipment> recievedShipments;
+	private List<Shipment> receivedShipments;
 
 	public Client() {
 
 	}
-	
+
+	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
 	public List<Shipment> getSentShipments() {
 		return sentShipments;
 	}
@@ -25,12 +25,13 @@ public class Client extends User {
 		this.sentShipments = sentShipments;
 	}
 
-	public List<Shipment> getRecievedShipments() {
-		return recievedShipments;
+	@OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
+	public List<Shipment> getReceivedShipments() {
+		return receivedShipments;
 	}
 
-	public void setRecievedShipments(List<Shipment> recievedShipments) {
-		this.recievedShipments = recievedShipments;
+	public void setReceivedShipments(List<Shipment> receivedShipments) {
+		this.receivedShipments = receivedShipments;
 	}
 
 }

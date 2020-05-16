@@ -2,19 +2,13 @@ package com.company.entities;
 
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntity implements UserDetails {
 
 	private String username;
@@ -47,7 +41,6 @@ public class User extends BaseEntity implements UserDetails {
 		this.name = name;
 	}
 
-	@Override
 	@ManyToMany(targetEntity = Role.class, fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	public Set<Role> getAuthorities() {

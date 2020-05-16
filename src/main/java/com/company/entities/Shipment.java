@@ -1,8 +1,6 @@
 package com.company.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,6 +13,7 @@ public class Shipment extends BaseEntity{
 	private double price;
 	private Client recipient;
 	private Client sender;
+	private Employee employee;
 	
 	public Shipment() {
 	}
@@ -35,6 +34,44 @@ public class Shipment extends BaseEntity{
 
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	@JoinColumn
+	@ManyToOne
+	public Client getRecipient() {
+		return recipient;
+	}
+
+	public void setRecipient(Client recipient) {
+		this.recipient = recipient;
+	}
+
+	@ManyToOne
+	@JoinColumn
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	@JoinColumn
+	@ManyToOne
+	public Client getSender() {
+		return sender;
+	}
+
+	public void setSender(Client sender) {
+		this.sender = sender;
 	}
 
 	@Override
