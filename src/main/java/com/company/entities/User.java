@@ -19,6 +19,7 @@ public class User extends BaseEntity implements UserDetails {
 
 	private String username;
 	private String password;
+	private String name;
 
 	private Set<Role> authorities;
 
@@ -35,6 +36,15 @@ public class User extends BaseEntity implements UserDetails {
 
 	public void setAuthorities(Set<Role> authorities) {
 		this.authorities = authorities;
+	}
+
+	@Column(name = "name", nullable = false, unique = false, updatable = true)
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override

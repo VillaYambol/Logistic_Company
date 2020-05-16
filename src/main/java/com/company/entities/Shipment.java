@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Table(name="shipments")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Shipment extends BaseEntity{
-	// podatel,poluchatel,address,weight
 	private String address;
 	private double weight;
-
+	private double price;
+	private Client recipient;
+	private Client sender;
+	
 	public Shipment() {
 	}
 

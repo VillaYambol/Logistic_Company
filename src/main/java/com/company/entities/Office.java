@@ -1,23 +1,29 @@
 package com.company.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "offices")
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Office extends BaseEntity {
-	// employees(kurieri,ofice-slujiteli),place,shipments
 	private String address;
 	private Company company;
+	private Set<Employee> employees; 
 
 	public Office() {
 	}
+
 
 	@Column(name = "office_address", nullable = false, unique = false, updatable = true)
 	public String getAddress() {
@@ -36,6 +42,16 @@ public class Office extends BaseEntity {
 
 	public void setCompany(Company company) {
 		this.company = company;
+	}
+	
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	@JsonIgnore
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
 	}
 
 	@Override
