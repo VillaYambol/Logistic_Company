@@ -4,6 +4,8 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name="shipments")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -14,6 +16,7 @@ public class Shipment extends BaseEntity{
 	private Client recipient;
 	private Client sender;
 	private Employee employee;
+	private LocalDate receivedDate;
 	
 	public Shipment() {
 	}
@@ -72,6 +75,15 @@ public class Shipment extends BaseEntity{
 
 	public void setSender(Client sender) {
 		this.sender = sender;
+	}
+
+	@Column(name = "date",updatable = true,nullable = false,unique = false)
+	public LocalDate getReceivedDate() {
+		return receivedDate;
+	}
+
+	public void setReceivedDate(LocalDate receivedDate) {
+		this.receivedDate = receivedDate;
 	}
 
 	@Override
