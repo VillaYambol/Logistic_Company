@@ -34,11 +34,11 @@ public class CompanyServiceImpl implements CompanyService {
 
 	@Override
 	public double calculateIncome(LocalDate startDate, LocalDate endDate){
-		List<Shipment> allShipments = shipmentRepository.findAll();
+		List<Shipment> allShipments = this.shipmentRepository.findAll();
 		double income = 0.0;
 		for(Shipment shipment : allShipments) {
 			if(shipment.getReceivedDate().isBefore(endDate) && shipment.getReceivedDate().isAfter(startDate)) {
-				Optional<Office> office = officeRepository.findByAddress(shipment.getAddress());
+				Optional<Office> office = this.officeRepository.findByAddress(shipment.getAddress());
 				if(!office.isPresent()) {
 					income += 2;
 				}
