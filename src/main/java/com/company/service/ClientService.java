@@ -7,8 +7,14 @@ import com.company.entities.Client;
 
 public interface ClientService {
 	public List<Client> findAllClients();
+
 	public Client findClientById(String id);
+
 	public Client createClient(Client client);
+
 	public Client updateClient(Client client);
+
 	public void deleteClient(Client client);
+
+	void deleteClientById(String id);
 }

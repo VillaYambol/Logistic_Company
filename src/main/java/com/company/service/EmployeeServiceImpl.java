@@ -3,12 +3,14 @@ package com.company.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.company.entities.Employee;
 import com.company.entities.Shipment;
 import com.company.repository.EmployeeRepository;
 import com.company.repository.ShipmentRepository;
 
+@Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired

@@ -3,12 +3,14 @@ package com.company.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.company.entities.Company;
 import com.company.entities.Office;
 import com.company.repository.CompanyRepository;
 import com.company.repository.OfficeRepository;
 
+@Service
 public class OfficeServiceImpl implements OfficeService {
 
 	@Autowired
