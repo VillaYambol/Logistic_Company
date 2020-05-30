@@ -19,8 +19,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Office extends BaseEntity {
 	private String address;
 	private Company company;
-	private  double shippingPrice;
-	private Set<Employee> employees; 
+	private double shippingPrice;
+	private Set<User> employees; 
 
 	public Office() {
 	}
@@ -47,11 +47,11 @@ public class Office extends BaseEntity {
 	
 	@OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
 	@JsonIgnore
-	public Set<Employee> getEmployees() {
+	public Set<User> getEmployees() {
 		return employees;
 	}
 
-	public void setEmployees(Set<Employee> employees) {
+	public void setEmployees(Set<User> employees) {
 		this.employees = employees;
 	}
 

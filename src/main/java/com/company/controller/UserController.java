@@ -15,12 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.company.entities.Client;
 import com.company.models.binding.UserRegisterBindingModel;
 import com.company.models.service.UserServiceModel;
 import com.company.models.view.UserAllViewModel;
 import com.company.models.view.UserProfileViewModel;
-import com.company.service.ClientService;
 import com.company.service.UserService;
 
 @Controller
@@ -29,13 +27,11 @@ public class UserController extends BaseController {
 
 	private final UserService userService;
 	private final ModelMapper modelMapper;
-	private final ClientService clientService;
 
 	@Autowired
-	public UserController(UserService userService, ModelMapper modelMapper, ClientService clientService) {
+	public UserController(UserService userService, ModelMapper modelMapper) {
 		this.userService = userService;
 		this.modelMapper = modelMapper;
-		this.clientService = clientService;
 	}
 
 	@GetMapping("/register")
@@ -52,7 +48,6 @@ public class UserController extends BaseController {
 		}
 
 		this.userService.registerUser(this.modelMapper.map(model, UserServiceModel.class));
-		this.clientService.createClient(this.modelMapper.map(model, Client.class));
 
 		return super.redirect("/login");
 	}
@@ -96,7 +91,6 @@ public class UserController extends BaseController {
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public ModelAndView setEmployee(@PathVariable String id) {
 		this.userService.setUserRole(id, "employee");
-		this.clientService.deleteClientById(id);
 		return super.redirect("/users/all");
 	}
 

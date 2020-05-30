@@ -13,9 +13,9 @@ public class Shipment extends BaseEntity{
 	private String address;
 	private double weight;
 	private double price;
-	private Client recipient;
-	private Client sender;
-	private Employee employee;
+	private User recipient;
+	private User sender;
+	private User employee;
 	private LocalDate receivedDate;
 	
 	public Shipment() {
@@ -49,31 +49,31 @@ public class Shipment extends BaseEntity{
 
 	@JoinColumn
 	@ManyToOne
-	public Client getRecipient() {
+	public User getRecipient() {
 		return recipient;
 	}
 
-	public void setRecipient(Client recipient) {
+	public void setRecipient(User recipient) {
 		this.recipient = recipient;
 	}
 
 	@ManyToOne
 	@JoinColumn
-	public Employee getEmployee() {
+	public User getEmployee() {
 		return employee;
 	}
 
-	public void setEmployee(Employee employee) {
+	public void setEmployee(User employee) {
 		this.employee = employee;
 	}
 
 	@JoinColumn
 	@ManyToOne
-	public Client getSender() {
+	public User getSender() {
 		return sender;
 	}
 
-	public void setSender(Client sender) {
+	public void setSender(User sender) {
 		this.sender = sender;
 	}
 

@@ -6,10 +6,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.company.entities.Employee;
 import com.company.entities.Shipment;
-import com.company.repository.EmployeeRepository;
+import com.company.entities.User;
 import com.company.repository.ShipmentRepository;
+import com.company.repository.UserRepository;
 
 @Service
 public class ShipmentServiceImpl implements ShipmentService {
@@ -17,7 +17,7 @@ public class ShipmentServiceImpl implements ShipmentService {
 	private ShipmentRepository shipmentRepository;
 
 	@Autowired
-	private EmployeeRepository employeeRepository;
+	private UserRepository userRepository;
 
 	@Override
 	public List<Shipment> findAllShipments() {
@@ -49,8 +49,8 @@ public class ShipmentServiceImpl implements ShipmentService {
 	@Override
 	public List<Shipment> getRegistestredShipments() {
 		List<Shipment> registred = new ArrayList<>();
-		List<Employee> employees = this.employeeRepository.findAll();
-		for (Employee employee : employees) {
+		List<User> employees = this.userRepository.findAll();
+		for (User employee : employees) {
 			registred.addAll(employee.getShipments());
 		}
 		return registred;

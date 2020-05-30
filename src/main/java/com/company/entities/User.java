@@ -1,5 +1,6 @@
 package com.company.entities;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.*;
@@ -8,13 +9,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntity implements UserDetails {
 
 	private String username;
 	private String password;
 	private String name;
-
+	private EmployeeType employeeType;
+	private List<Shipment> shipments;
+	private Office office;
+	private List<Shipment> sentShipments;
+	private List<Shipment> receivedShipments;
 	private Set<Role> authorities;
 
 	public User() {
@@ -26,6 +30,53 @@ public class User extends BaseEntity implements UserDetails {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+	public List<Shipment> getShipments() {
+		return shipments;
+	}
+
+	public void setShipments(List<Shipment> shipments) {
+		this.shipments = shipments;
+	}
+
+	@JoinColumn
+	@ManyToOne
+	public Office getOffice() {
+		return office;
+	}
+
+	public void setOffice(Office office) {
+		this.office = office;
+	}
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "employee_type", nullable = true, unique = false, updatable = true)
+	public EmployeeType getEmployeeType() {
+		return employeeType;
+	}
+
+	public void setEmployeeType(EmployeeType employeeType) {
+		this.employeeType = employeeType;
+	}
+
+	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL)
+	public List<Shipment> getSentShipments() {
+		return sentShipments;
+	}
+
+	public void setSentShipments(List<Shipment> sentShipments) {
+		this.sentShipments = sentShipments;
+	}
+
+	@OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL)
+	public List<Shipment> getReceivedShipments() {
+		return receivedShipments;
+	}
+
+	public void setReceivedShipments(List<Shipment> receivedShipments) {
+		this.receivedShipments = receivedShipments;
 	}
 
 	public void setAuthorities(Set<Role> authorities) {
