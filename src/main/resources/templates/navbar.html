@@ -24,7 +24,7 @@
 	
 	<th:block sec:authorize="isAuthenticated()">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light rounded font-weight-bold">
-        <a class="navbar-brand" th:href="@{/home}">Hyper Quiz</a>
+        <a class="navbar-brand" th:href="@{/home}">Company</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -45,6 +45,19 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="adminDropdown">
                                 <a class="dropdown-item" th:href="@{/users/all}">All Users</a>
+                            </div>
+                        </div>
+                    </li>
+                </th:block>
+                
+                 <th:block sec:authorize="hasRole('ROLE_CLIENT')">
+                <li class="nav-item active">
+                        <div class="dropdown">
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" id="adminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Shipments
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                <a class="dropdown-item" th:href="@{/shipments/add}">Create shipment</a>
                             </div>
                         </div>
                     </li>

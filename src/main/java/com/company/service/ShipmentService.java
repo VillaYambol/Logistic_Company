@@ -3,6 +3,7 @@ package com.company.service;
 import java.util.List;
 
 import com.company.entities.Shipment;
+import com.company.entities.User;
 
 public interface ShipmentService {
 
@@ -17,4 +18,5 @@ public interface ShipmentService {
 	void deleteShipment(String id);
 
 	List<Shipment> getRegistestredShipments();
+
 }
